@@ -1,0 +1,11 @@
+<button (click)="hideShowList()" type="button" class="btn btn-primary mt-5">{{(enableList == true? 'Ocultar':'Mostrar')}}</button>
+<div class="card mt-3">
+    <div class="card-header">
+        Listado de cursos
+    </div>
+    <ul class="list-group" *ngIf="enableList">
+        <li *ngFor="let course of courseList" class="list-group-item">
+            {{course}}
+        </li>
+    </ul>
+</div>
