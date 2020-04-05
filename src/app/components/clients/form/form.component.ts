@@ -12,6 +12,7 @@ export class FormComponent implements OnInit {
   client:Client=new Client();
 
   title:String="Crear cliente";
+  errors:string[];
 
   constructor(private clientService:ClientService,
     private router : Router,
@@ -39,7 +40,12 @@ export class FormComponent implements OnInit {
         `Cliente ${client.name} 
         ha sido creado con éxito`,
         'success');
-     } )
+     },err=>{
+       this.errors=err.error.errors as string[];
+       console.error('Codigo de error del backend: '+ err.status);
+       console.error(err.error.errors);
+     }
+      )
   }
 
   update():void{
@@ -50,7 +56,11 @@ export class FormComponent implements OnInit {
         `${json.message} : ${json.client.name} 
         `,
         'success');
-     } )
+     },err=>{
+      this.errors=err.error.errors as string[];
+      console.error('Codigo de error del backend: '+ err.status);
+      console.error(err.error.errors);
+    } )
   }
 
 

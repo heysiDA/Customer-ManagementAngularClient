@@ -41,6 +41,9 @@ export class ClientService {
     return this.http.post(this.url,client,{headers:this.httpHeaders}).pipe(
       map((response:any )=> response.client as Client),
       catchError(e=>{
+        if(e.status == 400){
+          return throwError(e);
+        }
         console.error(e.error.message);
         swal.fire(e.error.message,e.error.error,'error');
         return throwError(e);
@@ -53,6 +56,9 @@ export class ClientService {
     return this.http.put(`${this.url}/${client.id}`,client,{headers:this.httpHeaders}).pipe(
       map(response=> response as any),
       catchError(e=>{
+        if(e.status == 400){
+          return throwError(e);
+        }
         console.error(e.error.message);
         swal.fire(e.error.message,e.error.error,'error');
         return throwError(e);

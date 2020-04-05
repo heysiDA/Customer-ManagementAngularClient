@@ -1,3 +1,11 @@
+<!-- errors? pergunta si existe la instacia para luego seguir 
+  preguntando por algun atributo suyo -->
+<ul class="alert alert-danger" *ngIf="errors?.length > 0">
+  <li *ngFor="let err of errors">
+      {{err}}
+  </li>
+</ul>
+
 <div class="card bg-dark text-white mt-5">
   <div class="card-header">
     {{ title }}    
@@ -8,7 +16,8 @@
       <div class="form-group row">
         <label for="name" class="col-form-label col-sm-2">Nombre</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" [(ngModel)]="client.name" name="name" required minlength="4" #name="ngModel"/>
+          <!-- <input type="text" class="form-control" [(ngModel)]="client.name" name="name" required minlength="4" #name="ngModel"/> -->
+          <input type="text" class="form-control" [(ngModel)]="client.name" name="name" #name="ngModel"/>
           <div class="alert alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
               <div *ngIf="name.errors.required">
                   El nombre es requerido
@@ -22,7 +31,8 @@
       <div class="form-group row">
         <label for="lastName" class="col-form-label col-sm-2">Apellidos</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" [(ngModel)]="client.lastName" name="lastName" required #lastName="ngModel"/>
+          <!-- <input type="text" class="form-control" [(ngModel)]="client.lastName" name="lastName" required #lastName="ngModel"/> -->
+          <input type="text" class="form-control" [(ngModel)]="client.lastName" name="lastName" #lastName="ngModel"/>
           <div class="alert alert-danger" *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
             <div *ngIf="lastName.errors.required">
                 El apellido es requerido
@@ -33,7 +43,8 @@
       <div class="form-group row">
         <label for="email" class="col-form-label col-sm-2">Mail</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" [(ngModel)]="client.email" name="email" required email #email="ngModel"/>
+          <!-- <input type="text" class="form-control" [(ngModel)]="client.email" name="email" required email #email="ngModel"/> -->
+          <input type="text" class="form-control" [(ngModel)]="client.email" name="email" #email="ngModel"/>
           <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
             <div *ngIf="email.errors.required">
                 El mail es requerido
